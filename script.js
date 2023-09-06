@@ -1,9 +1,9 @@
 const grid = document.querySelector(`.grid`);
 const builder = document.querySelector(`.grid_builder`);
-
+let color_selector = document.querySelector(`.color_selector`);
 
 function setPixelColor(pixel){
-  pixel.setAttribute(`style`, `background-color: black`);
+  pixel.setAttribute(`style`, `background-color: ${color_selector.value}`);
 }
 
 function addPixelListener(pixel){
@@ -36,3 +36,4 @@ builder.addEventListener(`click`, () => {
   }
   createGrid(size);
 })
+

@@ -3,6 +3,10 @@
 
 }
 
+body {
+  background-color: #c0c0c0;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -13,9 +17,11 @@ h1 {
   color: #131516;
   font-family: sans-serif, Arial;
   font-size: 200%;
+  text-align: center;
 }
 
 .grid {
+  background-color: white;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -29,12 +35,10 @@ h1 {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  background-color: #d08de0;
   height: 100%;
 }
 
 .pixel {
-  background-color: #a4fff7;
   width: 100%;
   flex: 1 1 auto;
   outline: 1px black solid;
@@ -48,4 +52,32 @@ h1 {
   border: 0;
   border-radius: 6px;
   margin-bottom: 5%;
+  width: fit-content;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  max-width: 1000px;
+  width: 90%;
+  gap: 8%;
+  margin: 0 auto;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5%;
+}
+
+.color_selector {
+  color: #131516;
+  font-size: 200%;
+  font-weight: bolder;
+  border: 0;
+  border-radius: 6px;
+  margin-bottom: 5%;
+  width: 50%;
 }
