@@ -41,6 +41,9 @@ h1 {
 .pixel {
   width: 100%;
   flex: 1 1 auto;
+}
+
+.pixel_outline {
   outline: 0.05px black solid;
 }
 
@@ -84,7 +87,7 @@ h1 {
   width: 50%;
 }
 
-.grid_lines {
+.grid_toggle {
   color: #131516;
   font-size: 150%;
   font-weight: bolder;
