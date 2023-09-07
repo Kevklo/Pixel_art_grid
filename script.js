@@ -25,7 +25,11 @@ function setPixelColor(pixel, color){
 //Adds an event listener to every pixel//
 //The function will change depending on the mode//
 function addPixelListener(pixel){
-  pixel.addEventListener(`mousedown`, () => {
+  pixel.addEventListener(`drag`, (e) =>{
+    e.preventDefault();
+  })
+  pixel.addEventListener(`mousedown`, (e) => {
+    e.preventDefault();
     if(eraser.classList.contains(`active`)){
       setPixelColor(pixel, `#FFFFFF`);
     } else if (rainbow.classList.contains(`active`)){
@@ -35,7 +39,8 @@ function addPixelListener(pixel){
     }
   })
   pixel.addEventListener(`mouseover`, (e) => {
-    if(e.buttons == 1 || e.buttons == 3){
+    e.preventDefault();
+    if(e.buttons != 0){
       if(eraser.classList.contains(`active`)){
         setPixelColor(pixel, `#FFFFFF`);
       } else if (rainbow.classList.contains(`active`)){
@@ -44,9 +49,6 @@ function addPixelListener(pixel){
         setPixelColor(pixel, color_selector.value);
       }
     }
-  })
-  pixel.addEventListener(`drag`, (e) =>{
-    e.preventDefault();
   })
 }
 
