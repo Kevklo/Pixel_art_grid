@@ -1,14 +1,24 @@
 const grid = document.querySelector(`.grid`);
 const builder = document.querySelector(`.grid_builder`);
 let color_selector = document.querySelector(`.color_selector`);
+const grid_lines = document.querySelector(`.grid_lines`);
+let toggle_grid = true;
 
 function setPixelColor(pixel){
   pixel.setAttribute(`style`, `background-color: ${color_selector.value}`);
 }
 
 function addPixelListener(pixel){
-  pixel.addEventListener(`click`, () => {
+  pixel.addEventListener(`mousedown`, () => {
     setPixelColor(pixel);
+  })
+  pixel.addEventListener(`mouseover`, (e) => {
+    if(e.buttons == 1 || e.buttons == 3){
+      setPixelColor(pixel);
+    }
+  })
+  pixel.addEventListener(`drag`, (e) =>{
+    e.preventDefault();
   })
 }
 
@@ -37,3 +47,18 @@ builder.addEventListener(`click`, () => {
   createGrid(size);
 })
 
+grid_lines.addEventListener(`click`, () => {
+  const pixels = Array.from(document.querySelectorAll(`.pixel`));
+  if(toggle_grid == true){
+    for(let i = 0; i < pixels.length; i++){
+      pixels[i].setAttribute(`style`, `outline: 0`);
+    }
+  } else {
+    for(let i = 0; i < pixels.length; i++){
+      pixels[i].setAttribute(`style`, ``);
+    }
+  }
+  toggle_grid = !toggle_grid;
+})
+
+createGrid(10);

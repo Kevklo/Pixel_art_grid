@@ -41,7 +41,7 @@ h1 {
 .pixel {
   width: 100%;
   flex: 1 1 auto;
-  outline: 1px black solid;
+  outline: 0.05px black solid;
 }
 
 .grid_builder {
@@ -61,11 +61,13 @@ h1 {
   justify-content: flex-start;
   max-width: 1000px;
   width: 90%;
-  gap: 8%;
+  gap: 4%;
   margin: 0 auto;
 }
 
 .buttons {
+  padding: 2%;
+  background-color: #1d242e;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,4 +82,15 @@ h1 {
   border-radius: 6px;
   margin-bottom: 5%;
   width: 50%;
+}
+
+.grid_lines {
+  color: #131516;
+  font-size: 150%;
+  font-weight: bolder;
+  background-color: #8db5f7;
+  border: 0;
+  border-radius: 6px;
+  margin-bottom: 5%;
+  width: fit-content;
 }
