@@ -59,6 +59,7 @@ h1 {
 
 .buttons {
   padding: 2%;
+  width: 25%;
   background-color: #1d242e;
   display: flex;
   flex-direction: column;

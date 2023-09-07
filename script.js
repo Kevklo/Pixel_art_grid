@@ -3,18 +3,46 @@ const builder = document.querySelector(`.grid_builder`);
 let color_selector = document.querySelector(`.color_selector`);
 const grid_toggle = document.querySelector(`.grid_toggle`);
 const clear_grid = document.querySelector(`.clear_grid`)
+const eraser = document.querySelector(`.eraser`);
+const rainbow = document.querySelector(`.rainbow_toggle`);
 
+
+//Selects a random rgb color and sets it as background//
+function setPixelColorRandom(pixel){
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  const rgb = "rgb"
+  pixel.setAttribute(`style`, `background-color: rgb(${r},${g},${b})`)
+}
+
+//Given a pixel and a color, sets the color as background of the pixel//
 function setPixelColor(pixel, color){
   pixel.setAttribute(`style`, `background-color: ${color}`);
 }
 
+
+//Adds an event listener to every pixel//
+//The function will change depending on the mode//
 function addPixelListener(pixel){
   pixel.addEventListener(`mousedown`, () => {
-    setPixelColor(pixel, color_selector.value);
+    if(eraser.classList.contains(`active`)){
+      setPixelColor(pixel, `#FFFFFF`);
+    } else if (rainbow.classList.contains(`active`)){
+      setPixelColorRandom(pixel);
+    } else {
+      setPixelColor(pixel, color_selector.value);
+    }
   })
   pixel.addEventListener(`mouseover`, (e) => {
     if(e.buttons == 1 || e.buttons == 3){
-      setPixelColor(pixel, color_selector.value);
+      if(eraser.classList.contains(`active`)){
+        setPixelColor(pixel, `#FFFFFF`);
+      } else if (rainbow.classList.contains(`active`)){
+        setPixelColorRandom(pixel);
+      } else {
+        setPixelColor(pixel, color_selector.value);
+      }
     }
   })
   pixel.addEventListener(`drag`, (e) =>{
@@ -22,6 +50,16 @@ function addPixelListener(pixel){
   })
 }
 
+//Removes the outline of the pixels//
+function gridToggle(){
+  const pixels = Array.from(document.querySelectorAll(`.pixel`));
+  for(let i = 0; i < pixels.length; i++){
+    pixels[i].classList.toggle(`pixel_outline`);
+  }
+}
+
+
+//Removes the previus grid and builds a new one//
 function createGrid(size){
   while(grid.firstChild){
     grid.removeChild(grid.firstChild);
@@ -37,8 +75,12 @@ function createGrid(size){
         column.appendChild(pixel);
       }
   }
+  if(grid_toggle.classList.contains(`active`)){
+    gridToggle();
+  }
 }
 
+//Clears every pixel of the grid//
 function clearGrid(){
   //Because the createGrid deletes the grid and creates a new one,
   //We only need to get the size of the grid for this function to work
@@ -75,14 +117,31 @@ builder.addEventListener(`click`, () => {
   createGrid(size);
 })
 
+//
+
 grid_toggle.addEventListener(`click`, () => {
-  const pixels = Array.from(document.querySelectorAll(`.pixel`));
-  for(let i = 0; i < pixels.length; i++){
-    pixels[i].classList.toggle(`pixel_outline`);
-  }
+  gridToggle();
   grid_toggle.classList.toggle(`active`);
 })
 
 clear_grid.addEventListener(`click`, clearGrid);
+
+
+//Both rainbow and eraser listeners, toggle an active class//
+//to identify the mode//
+
+rainbow.addEventListener(`click`, () => {
+  rainbow.classList.toggle(`active`);
+  if(eraser.classList.contains(`active`)){
+    eraser.classList.toggle(`active`);
+  }
+})
+
+eraser.addEventListener(`click`, () => {
+  eraser.classList.toggle(`active`);
+  if(rainbow.classList.contains(`active`)){
+    rainbow.classList.toggle(`active`);
+  }
+})
 
 defaultDraw();
