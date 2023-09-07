@@ -1,20 +1,23 @@
 * {
   box-sizing: border-box;
-
 }
 
 body {
-  background-color: #c0c0c0;
+  background-color: #e7eaec;
+  margin: 0;
+  padding: 0;
 }
 
 main {
+  min-height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 7%;
 }
 
 h1 {
-  color: #131516;
+  color: #000000;
   font-family: sans-serif, Arial;
   font-size: 200%;
   text-align: center;
@@ -60,7 +63,7 @@ h1 {
 .buttons {
   padding: 2%;
   width: 25%;
-  background-color: #1d242e;
+  background-color: #1F2937;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,10 +71,11 @@ h1 {
 }
 
 .buttons button {
-  color: #131516;
+  color: #FFFFFF;
   font-size: 150%;
   font-weight: bolder;
-  background-color: #8db5f7;
+  background-color: #3882f6;
+  padding: 3%;
   border: 0;
   border-radius: 6px;
   margin-bottom: 5%;
@@ -90,6 +94,28 @@ h1 {
   background-color: #B3FFC6 !important;
 }
 
+.foot {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #1F2937;
+  padding: 2% 0 2% 0;
+  color: white;
+}
+
+.credit {
+  font-weight: lighter;
+  font-size: 120%;
+  font-family: sans-serif;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+}
+
 @media (max-width: 800px){
   .game {
     display: flex;
@@ -102,6 +128,7 @@ h1 {
     
   }
   .grid {
+
     background-color: white;
     display: flex;
     flex-wrap: wrap;

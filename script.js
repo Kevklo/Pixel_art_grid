@@ -50,6 +50,7 @@ function addPixelListener(pixel){
       }
     }
   })
+
 }
 
 //Removes the outline of the pixels//
