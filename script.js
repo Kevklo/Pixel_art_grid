@@ -40,7 +40,7 @@ function createGrid(size){
 
 builder.addEventListener(`click`, () => {
   let size = prompt(`Introduce grid size, ie: 2`);
-  while(isNaN(size) || size > 100){
+  while(isNaN(size) || size > 100 || size.length == 0){
     if(size > 100){
       size = prompt(`Introduce a grid size lower than 100`);
     } else {
