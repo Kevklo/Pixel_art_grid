@@ -97,6 +97,10 @@ h1 {
     align-items: center;
     gap: 5%;
   }
+  .buttons{
+    width: 80%;
+    
+  }
   .grid {
     background-color: white;
     display: flex;

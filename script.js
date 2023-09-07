@@ -130,6 +130,15 @@ clear_grid.addEventListener(`click`, clearGrid);
 //Both rainbow and eraser listeners, toggle an active class//
 //to identify the mode//
 
+color_selector.addEventListener(`click`, () => {
+  if(eraser.classList.contains(`active`)){
+    eraser.classList.toggle(`active`);
+  }
+  if(rainbow.classList.contains(`active`)){
+    rainbow.classList.toggle(`active`);
+  }
+})
+
 rainbow.addEventListener(`click`, () => {
   rainbow.classList.toggle(`active`);
   if(eraser.classList.contains(`active`)){
