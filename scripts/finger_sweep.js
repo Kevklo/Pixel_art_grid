@@ -4,6 +4,7 @@ const touchedPixels = new Set();
 grid.addEventListener('touchstart', () => {
   isTouching = true;
   touchedPixels.clear();
+  event.preventDefault();
 });
 
 grid.addEventListener('touchend', () => {
@@ -17,6 +18,7 @@ grid.addEventListener('touchmove', (event) => {
     const touchX = event.touches[0].clientX;
     const touchY = event.touches[0].clientY;
 
+    event.preventDefault();
 
     pixels.forEach((pixel) => {
       const pixelRect = pixel.getBoundingClientRect();
