@@ -4,7 +4,6 @@ const touchedPixels = new Set();
 grid.addEventListener('touchstart', () => {
   isTouching = true;
   touchedPixels.clear();
-  event.preventDefault();
 });
 
 grid.addEventListener('touchend', () => {
