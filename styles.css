@@ -44,6 +44,7 @@ h1 {
 .pixel {
   width: 100%;
   flex: 1 1 auto;
+  transition: all 200ms;
 }
 
 .pixel_outline {
