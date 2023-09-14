@@ -5,4 +5,5 @@ const grid_toggle = document.querySelector(`.grid_toggle`);
 const clear_grid = document.querySelector(`.clear_grid`)
 const eraser = document.querySelector(`.eraser`);
 const rainbow = document.querySelector(`.rainbow_toggle`);
-const WHITE = `#FFFFFF`;
+const picker = document.querySelector(`.color_picker`)
+const WHITE = `rgb(255, 255, 255)`;

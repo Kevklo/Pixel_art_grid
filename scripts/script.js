@@ -1,14 +1,30 @@
-
 //Depending on the mode, paints the pixels one way or another//
+function rgbToHex(color) {
+  color = color.slice(4, -1);
+  colorArray = color.split(',');
+  r = Number(colorArray[0]).toString(16).padStart(2, '0');;
+  g = Number(colorArray[1]).toString(16).padStart(2, '0');
+  b = Number(colorArray[2]).toString(16).padStart(2, '0');
+  return `#${r}${g}${b}`
+}
+
+
 function doModeAction(pixel) {
   if(eraser.classList.contains(`active`)){
     setPixelColor(pixel, WHITE);
   } else if (rainbow.classList.contains(`active`)){
     setPixelColorRandom(pixel);
+  } else if (picker.classList.contains(`active`)){
+    if(pixel.style.backgroundColor == ''){
+      color_selector.value = `#ffffff`;
+    } else {
+      color_selector.value = rgbToHex(pixel.style.backgroundColor);
+    }
   } else {
     setPixelColor(pixel, color_selector.value);
   }
 }
+
 
 function mouseEventHandler(e, pixel){
   e.preventDefault();
@@ -18,14 +34,27 @@ function mouseEventHandler(e, pixel){
   }
 }
 
+
 //Selects a random rgb color and sets it as background//
 function setPixelColorRandom(pixel){
-  const r = Math.floor(Math.random() * 255);
-  const g = Math.floor(Math.random() * 255);
-  const b = Math.floor(Math.random() * 255);
-  const rgb = "rgb"
+  let r = Math.floor(Math.random() * 255);
+  r = r.toString();
+  if(r.length < 3){
+    r = r.padStart(3, '0');
+  }
+  let g = Math.floor(Math.random() * 255);
+  g = g.toString();
+  if(g.length < 3){
+    g = g.padStart(3, '0');
+  }
+  let b = Math.floor(Math.random() * 255);
+  b = b.toString();
+  if(b.length < 3){
+    b = b.padStart(3, '0');
+  }
   pixel.setAttribute(`style`, `background-color: rgb(${r},${g},${b})`)
 }
+
 
 //Given a pixel and a color, sets the color as background of the pixel//
 function setPixelColor(pixel, color){
@@ -77,6 +106,7 @@ function createGrid(size){
   }
 }
 
+
 builder.addEventListener(`click`, () => {
   //The size in an integer number
   let size = prompt(`Introduce grid size, ie: 2`);
@@ -91,7 +121,6 @@ builder.addEventListener(`click`, () => {
 })
 
 
-
 //Clears every pixel of the grid//
 function clearGrid(){
   //Because the createGrid deletes the grid and creates a new one,
@@ -99,6 +128,7 @@ function clearGrid(){
   const columns = Array.from(document.querySelectorAll(`.column`));
   createGrid(columns.length);
 }
+
 
 function defaultDraw(){
   //Draws a simple default pixel-art of a heart//
@@ -109,17 +139,19 @@ function defaultDraw(){
     if((i+1) % 5 == 0){
       setPixelColor(pixels[i], `#B3FFC6`)
     } else if(i == 11 || i == 16 || i == 21){
-      setPixelColor(pixels[i], `#WHITE`);
+      setPixelColor(pixels[i], WHITE);
     } else {
       setPixelColor(pixels[i], `#83FFFd`);
     }
   }
 }
 
+
 grid_toggle.addEventListener(`click`, () => {
   gridToggle();
   grid_toggle.classList.toggle(`active`);
 })
+
 
 clear_grid.addEventListener(`click`, clearGrid);
 
@@ -131,7 +163,11 @@ color_selector.addEventListener(`click`, () => {
   if(rainbow.classList.contains(`active`)){
     rainbow.classList.toggle(`active`);
   }
+  if(picker.classList.contains(`active`)){
+    picker.classList.toggle(`active`)
+  }
 })
+
 
 //Both rainbow and eraser listeners, toggle an active class//
 //to identify the mode//
@@ -141,6 +177,9 @@ rainbow.addEventListener(`click`, () => {
   if(eraser.classList.contains(`active`)){
     eraser.classList.toggle(`active`);
   }
+  if(picker.classList.contains(`active`)){
+    picker.classList.toggle(`active`)
+  }
 })
 
 eraser.addEventListener(`click`, () => {
@@ -148,6 +187,20 @@ eraser.addEventListener(`click`, () => {
   if(rainbow.classList.contains(`active`)){
     rainbow.classList.toggle(`active`);
   }
+  if(picker.classList.contains(`active`)){
+    picker.classList.toggle(`active`)
+  }
 })
+
+picker.addEventListener(`click`, () => {
+  picker.classList.toggle(`active`);
+  if(rainbow.classList.contains(`active`)){
+    rainbow.classList.toggle(`active`);
+  }
+  if(eraser.classList.contains(`active`)){
+    eraser.classList.toggle(`active`)
+  }
+})
+
 
 defaultDraw();
